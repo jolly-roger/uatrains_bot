@@ -1,3 +1,3 @@
 from . import spider
 
-app = wsgi()
+app = spider.wsgi()
