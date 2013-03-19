@@ -7,10 +7,10 @@ import logging
 import threading
 
 
-import graber
-from uatrains import orm
-from uatrains.layout import layout
-from uatrains import notifier
+from . import graber
+from .uatrains import orm
+from .uatrains.layout import layout
+from .uatrains import notifier
     
 
 class spider(object):
@@ -62,5 +62,3 @@ def wsgi():
     app.config.update({'/': {'error_page.default': error_page_default}})
     tree.bind_address = (app.config['global']['server.socket_host'], app.config['global']['server.socket_port'])
     return tree
-
-app = wsgi()
