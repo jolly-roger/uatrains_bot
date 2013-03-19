@@ -2,7 +2,7 @@ import multiprocessing
 import traceback
 
 
-from .uatrains.engine import drv
+from uatrains.engine import drv
 
 
 def grab():
