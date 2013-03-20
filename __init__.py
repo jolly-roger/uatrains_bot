@@ -1,14 +1,7 @@
-import os
-import os.path
 import logging
 import logging.handlers
 
-
-LOGS_DIR = 'logs'
-
-os.chdir('/home/www')
-if not os.path.isdir(LOGS_DIR):
-    os.mkdir(LOGS_DIR)
+LOGS_DIR = '/home/wwwlogs'
 
 access_logger = logging.getLogger('werp_access')
 access_logger.setLevel(logging.DEBUG)
