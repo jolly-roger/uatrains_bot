@@ -22,8 +22,3 @@ error_logger.addHandler(error_logger_fh)
 from . import spider
 
 app = spider.wsgi()
-
-
-
-
-error_logger.info('Yo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
