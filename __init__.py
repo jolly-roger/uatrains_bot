@@ -1,7 +1,7 @@
 import logging
 import logging.handlers
 
-LOGS_DIR = '/home/wwwlogs'
+LOGS_DIR = '/home/www/logs'
 
 access_logger = logging.getLogger('werp_access')
 access_logger.setLevel(logging.DEBUG)
