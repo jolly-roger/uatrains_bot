@@ -8,9 +8,6 @@ import threading
 
 
 from . import graber
-from .uatrains import orm
-from .uatrains.layout import layout
-from .uatrains import notifier
     
 
 class spider(object):
@@ -19,29 +16,6 @@ class spider(object):
         gth = threading.Thread(name='uatr_spider', target=graber.grab)
         gth.setDaemon(True)
         gth.start()
-    @cherrypy.expose
-    def get_railway_timetable(self, rwid):
-        lng = 'RU'
-        conn = orm.q_engine.connect()
-        ses = orm.sescls(bind=conn)
-        rw = None
-        l = ''
-        try:
-            rw = ses.query(orm.Railway).\
-                options(orm.joinedload_all(orm.Railway.routes, orm.Route.route_trains, orm.RouteTrain.train,
-                orm.E.t_ss)).\
-                filter(orm.Railway.id == int(rwid)).\
-                all()
-        except:
-            notifier.notify('Uatrains error', 'Can\'t find railway by rwid = ' + str(rwid) + '\n' +\
-                traceback.format_exc())
-        if rw is not None:
-            if rw[0].routes is None or (rw[0].routes is not None and len(rw[0].routes) == 0):
-                notifier.notify('Uatrains error', 'No routes were found for rwid = ' + str(rwid))
-            l = layout.getRailwayTimetable(rw[0], lng)
-        ses.close()
-        conn.close()
-        return l
     
 
 def error_page_default(status, message, traceback, version):
